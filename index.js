@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from 'cors';
 import { ContentRoutes } from "./Routes/Content.Routes.js";
+import { UserRoutes } from "./Routes/User.Routes.js";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 
 
 ContentRoutes(app);
+UserRoutes(app);
 
 app.listen(process.env.PORT, () => {
   console.log(

@@ -35,7 +35,6 @@ export const ContentService = {
 
       return deletedContent;
     } catch (error) {
-      // Handle any errors that occur during the deletion process
       throw error;
     }
   },
@@ -45,12 +44,11 @@ export const ContentService = {
       const updatedContent = await Content.findByIdAndUpdate(
         contentId,
         { $set: updatedData },
-        { new: true } // This option returns the updated content after the update
+        { new: true }
       );
 
       return updatedContent;
     } catch (error) {
-      // Handle any errors that occur during the update process
       throw error;
     }
   },

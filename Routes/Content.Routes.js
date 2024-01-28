@@ -1,7 +1,8 @@
 import { ContentService } from "../Services/ContentService.js";
+import { Authorize } from "../middlewares/Auth.js";
 
 export const ContentRoutes = (app) => {
-  app.post("/api/submit", async (req, res) => {
+  app.post("/api/submit", Authorize(["teacher"]), async (req, res) => {
     try {
       const newContent = await ContentService.createContents(req.body);
       res.json(newContent);
@@ -11,7 +12,7 @@ export const ContentRoutes = (app) => {
     }
   });
 
-  app.get("/api/allContent", async (req, res) => {
+  app.get("/api/allContent", Authorize(["teacher"]), async (req, res) => {
     try {
       const allContents = await ContentService.getAllContents();
       res.json(allContents);
@@ -20,7 +21,7 @@ export const ContentRoutes = (app) => {
     }
   });
 
-  app.get("/api/:contentId", async (req, res) => {
+  app.get("/api/:contentId", Authorize(["teacher"]), async (req, res) => {
     try {
       const content = await ContentService.getContentById(req.params.contentId);
       res.json(content);
@@ -31,7 +32,7 @@ export const ContentRoutes = (app) => {
 
 
   // Delete content by ID
-  app.delete("/api/delete/:contentId", async (req, res) => {
+  app.delete("/api/delete/:contentId", Authorize(["teacher"]), async (req, res) => {
     try {
       const deletedContent = await ContentService.deleteContentById(
         req.params.contentId
@@ -48,7 +49,7 @@ export const ContentRoutes = (app) => {
   });
 
   // Update content by ID
-  app.put("/api/edit/:contentId", async (req, res) => {
+  app.put("/api/edit/:contentId", Authorize(["teacher"]), async (req, res) => {
     // Check for validation errors
 
     try {
