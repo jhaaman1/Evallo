@@ -17,12 +17,12 @@ export const Content = mongoose.model(
       maxlength: 255,
     },
     category: { type: String, required: true },
-    tags: [{ type: String }],
     difficultyLevel: {
       type: String,
       enum: ["Beginner", "Intermediate", "Advanced"],
     },
     targetAudience: { type: String, enum: ["Students", "Teachers", "Parents"] },
+    date: {type: Date}
   }),
   "Content"
 );
